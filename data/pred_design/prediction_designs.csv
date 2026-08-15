@@ -1,0 +1,7 @@
+﻿Data,Sequence,Protein Embedding model
+OpenCell,Protein,300M
+OpenCell,Protein + tag,300M
+PaperClip,Protein,300M
+OpenCell,Protein,6B
+OpenCell,Protein + tag,6B
+PaperClip,Protein,6B
