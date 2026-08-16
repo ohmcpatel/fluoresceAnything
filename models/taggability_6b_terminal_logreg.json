@@ -1,0 +1,58 @@
+{
+  "spec": {
+    "task": "filter",
+    "target": "P(library_success) for a knock-in tagging attempt",
+    "backbone": "6b",
+    "seqtype": "protein",
+    "pooling": "TERMINAL",
+    "blocks": [
+      "mean",
+      "first_25",
+      "last_25"
+    ],
+    "n_features": 7680,
+    "C": 0.001,
+    "max_iter": 5000,
+    "class_weight": null,
+    "seed": 42,
+    "max_len": 2046,
+    "source": "notebooks/decision_to_classifier.ipynb"
+  },
+  "training": {
+    "n_rows": 1757,
+    "n_pos": 1310,
+    "n_neg": 447,
+    "table": "data/modeling_table.csv",
+    "fitted_utc": "2026-08-16T07:35:50+00:00",
+    "git_commit": "ebbf721685a2fcbac657eac9c0456978be1a6028",
+    "sklearn": "1.9.0",
+    "numpy": "1.26.3"
+  },
+  "held_out": {
+    "config_id": "filter|OpenCell/protein/6b|TERMINAL|logreg|u",
+    "pr_auc_pooled": 0.8954244794325965,
+    "pr_auc_minority_pooled": 0.6008064648380171,
+    "pr_auc_minority_per_fold": [
+      0.6478223143481142,
+      0.5773266537901325,
+      0.6850156435238178,
+      0.49515835463684715,
+      0.6181653708803201
+    ],
+    "pr_auc_minority_mean": 0.6046976674358463,
+    "pr_auc_minority_std": 0.07286996110660905,
+    "brier_pooled": 0.14656759523755283,
+    "base_rate": 0.7455890722822994,
+    "oof_score_quantiles": {
+      "0.01": 0.08100053191184993,
+      "0.05": 0.24810926318168633,
+      "0.1": 0.3837988317012787,
+      "0.25": 0.6386362910270691,
+      "0.5": 0.8320102691650391,
+      "0.75": 0.9337844848632812,
+      "0.9": 0.969587528705597,
+      "0.95": 0.9802317619323732,
+      "0.99": 0.9904981350898744
+    }
+  }
+}

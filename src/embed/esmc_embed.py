@@ -77,10 +77,11 @@ class Esmc300M:
 
     name = "300m"
 
-    def __init__(self):
+    def __init__(self, device="cuda"):
         from esm.models.esmc import ESMC
 
-        self.model = ESMC.from_pretrained("esmc_300m").to("cuda").eval()
+        self.device = device
+        self.model = ESMC.from_pretrained("esmc_300m").to(device).eval()
         self.tokenizer = self.model.tokenizer
 
     def describe(self):
@@ -94,7 +95,7 @@ class Esmc300M:
 
     @torch.no_grad()
     def forward(self, ids, mask):
-        out = self.model(ids.to("cuda"))
+        out = self.model(ids.to(self.device))
         return out.embeddings
 
 
@@ -104,13 +105,14 @@ class Esmc6B:
     name = "6b"
     hf_repo = "multimolecule/esmc-6b"
 
-    def __init__(self):
+    def __init__(self, device="cuda"):
         from multimolecule.models.esmc import EsmCModel
         from transformers import AutoTokenizer
 
+        self.device = device
         self.tokenizer = AutoTokenizer.from_pretrained(self.hf_repo)
         self.model = (
-            EsmCModel.from_pretrained(self.hf_repo, dtype=torch.bfloat16).to("cuda").eval()
+            EsmCModel.from_pretrained(self.hf_repo, dtype=torch.bfloat16).to(device).eval()
         )
 
     def describe(self):
@@ -128,7 +130,7 @@ class Esmc6B:
 
     @torch.no_grad()
     def forward(self, ids, mask):
-        out = self.model(input_ids=ids.to("cuda"), attention_mask=mask.to("cuda"))
+        out = self.model(input_ids=ids.to(self.device), attention_mask=mask.to(self.device))
         return out.last_hidden_state
 
 
